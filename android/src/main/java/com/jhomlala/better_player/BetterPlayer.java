@@ -90,10 +90,11 @@ final class BetterPlayer {
 
         Uri uri = Uri.parse(dataSource);
         DataSource.Factory dataSourceFactory;
+        String useragent=headers.get('user-agent') ? headers.get('user-agent') : "ExoPlayer";
         if (isHTTP(uri)) {
             DefaultHttpDataSourceFactory defaultHttpDataSourceFactory =
                     new DefaultHttpDataSourceFactory(
-                            "ExoPlayer",
+                            useragent,
                             null,
                             DefaultHttpDataSource.DEFAULT_CONNECT_TIMEOUT_MILLIS,
                             DefaultHttpDataSource.DEFAULT_READ_TIMEOUT_MILLIS,
@@ -103,7 +104,7 @@ final class BetterPlayer {
             }
             dataSourceFactory = defaultHttpDataSourceFactory;
         } else {
-            dataSourceFactory = new DefaultDataSourceFactory(context, "ExoPlayer");
+            dataSourceFactory = new DefaultDataSourceFactory(context, useragent);
         }
 
         MediaSource mediaSource = buildMediaSource(uri, dataSourceFactory, formatHint, context);
