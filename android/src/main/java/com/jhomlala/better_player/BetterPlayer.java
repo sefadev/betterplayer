@@ -90,7 +90,7 @@ final class BetterPlayer {
 
         Uri uri = Uri.parse(dataSource);
         DataSource.Factory dataSourceFactory;
-        String useragent=headers.get('user-agent') ? headers.get('user-agent') : "ExoPlayer";
+        String useragent=headers.get('user-agent')!=null ? headers.get('user-agent') : "Exo-Player";
         if (isHTTP(uri)) {
             DefaultHttpDataSourceFactory defaultHttpDataSourceFactory =
                     new DefaultHttpDataSourceFactory(
